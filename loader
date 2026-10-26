@@ -1,0 +1,3 @@
+-- Luthor Hub Protected Loader | VoidedX
+-- Viewable / executable only via Roblox executor
+loadstring(game:HttpGet("https://voidedx.vercel.app/api/raw?id=vx_i67n6kjh"))()
