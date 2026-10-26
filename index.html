@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luthor Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="ambient-glow"></div>
+  <div class="grid-pattern"></div>
+
+  <nav class="navbar">
+    <div class="brand">
+      <div class="brand-icon">L</div>
+      <span class="brand-name">LUTHOR<span>HUB</span></span>
+    </div>
+    
+    <div class="nav-controls">
+      <!-- Language Switcher Dropdown -->
+      <div class="lang-picker">
+        <select id="langSelect" onchange="changeLanguage(this.value)">
+          <option value="en" selected>🇺🇸 EN</option>
+          <option value="pt">🇧🇷 PT</option>
+        </select>
+      </div>
+
+      <div class="status-pill">
+        <span class="pulse-dot"></span>
+        <span class="status-text" data-i18n="status">Operational</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="hero-container">
+    <div class="hero-content">
+      <div class="tag" data-i18n="tag">Protected by VoidedX and Protection</div>
+      <h1 id="heroTitle">Execute seamlessly.<br><span class="gradient-text">Luthor Hub Tcs script</span></h1>
+      <p class="description" data-i18n="description">copy to ur executer and run it</p>
+
+      <div class="loader-card">
+        <div class="card-header">
+          <div class="terminal-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span class="card-title" data-i18n="cardTitle">Loadstring and Execute seamlessly.</span>
+        </div>
+        
+        <div class="code-wrapper">
+          <code id="loadstring">loadstring(game:HttpGet("https://luthorhub.netlify.app"))()</code>
+          <button id="copyBtn" onclick="copyScript()">
+            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span data-i18n="btnCopy">Copy</span>
+          </button>
+        </div>
+
+        <div class="card-footer">
+          <div class="meta-item">
+            <span class="label" data-i18n="protectionLabel">Protection</span>
+            <a href="https://voidedx.vercel.app" target="_blank" rel="noopener noreferrer" class="value purple" data-i18n="protectionVal">VoidedX</a>
+          </div>
+          <div class="meta-item">
+            <span class="label" data-i18n="accessLabel">Access</span>
+            <span class="value green" data-i18n="accessVal">Public Stream</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
