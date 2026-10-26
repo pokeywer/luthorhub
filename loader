@@ -1,3 +1,8 @@
 -- Luthor Hub Protected Loader | VoidedX
 -- Viewable / executable only via Roblox executor
-loadstring(game:HttpGet("https://voidedx.vercel.app/api/raw?id=vx_i67n6kjh"))()
+local ok, err = pcall(function()
+    loadstring(game:HttpGet("https://voidedx.vercel.app/api/raw?id=vx_i67n6kjh", true))()
+end)
+if not ok then
+    error("[LuthorHub] Failed to load: " .. tostring(err), 0)
+end

@@ -35,35 +35,53 @@ function changeLanguage(lang) {
   currentLang = lang;
   const t = translations[lang];
 
-  // Update elements with data-i18n attribute
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (t[key]) {
-      el.innerText = t[key];
-    }
+    if (t[key]) el.innerText = t[key];
   });
 
-  // Update split title
   const titleEl = document.getElementById('heroTitle');
   titleEl.innerHTML = `${t.titleMain}<br><span class="gradient-text">${t.titleSub}</span>`;
 }
 
 function copyScript() {
-  const codeText = document.getElementById('loadstring').innerText;
+  const codeText = document.getElementById('loadstring').innerText.trim();
   const button = document.getElementById('copyBtn');
   const buttonText = button.querySelector('span');
 
-  navigator.clipboard.writeText(codeText).then(() => {
+  const markCopied = () => {
     buttonText.innerText = translations[currentLang].btnCopied;
     button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
     button.style.boxShadow = '0 4px 15px rgba(16, 185, 129, 0.3)';
-
     setTimeout(() => {
       buttonText.innerText = translations[currentLang].btnCopy;
       button.style.background = 'linear-gradient(135deg, var(--accent-purple), var(--accent-glow))';
       button.style.boxShadow = '0 4px 15px rgba(147, 51, 234, 0.3)';
     }, 2000);
-  }).catch(err => {
-    console.error('Failed to copy: ', err);
-  });
+  };
+
+  // Try modern clipboard API first, fall back to execCommand
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(codeText).then(markCopied).catch(() => {
+      fallbackCopy(codeText, markCopied);
+    });
+  } else {
+    fallbackCopy(codeText, markCopied);
+  }
+}
+
+function fallbackCopy(text, onSuccess) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;pointer-events:none';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try {
+    document.execCommand('copy');
+    onSuccess();
+  } catch (e) {
+    console.error('Copy failed:', e);
+  }
+  document.body.removeChild(ta);
 }

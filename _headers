@@ -2,6 +2,7 @@
   Content-Type: text/plain; charset=utf-8
   X-Content-Type-Options: nosniff
   Cache-Control: no-cache, no-store, must-revalidate
+  Access-Control-Allow-Origin: *
 
 /*
   X-Frame-Options: DENY
